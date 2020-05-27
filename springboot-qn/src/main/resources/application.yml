@@ -1,0 +1,122 @@
+# 测试用配置
+person:
+  last-name: cyy
+  age: 28
+  birth: 2020/02/02
+  email: gmail@gmail.com
+  maps:
+    key1: java
+    key2: golang
+  lists:
+    - a
+    - b
+    - c
+
+
+#Spring配置
+spring:
+  #模板引擎
+  thymeleaf:
+    encoding: utf-8
+    servlet:
+      content-type: text/html
+    prefix: classpath:/templates/
+    suffix: .html
+  #多环境激活
+  profiles:
+    active: dev
+  #静态资源访问
+  resources:
+    static-locations: classpath:/html,classpath:/images,classpath:/templates,classpath:/static
+  #视图解析器配置
+  mvc:
+    view:
+      prefix: classpath:/html/
+      suffix: .html
+
+  # 数据库配置
+  datasource:
+    boot:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/boot
+      username: qinnan
+      password: 123456
+      type: com.alibaba.druid.pool.DruidDataSource
+
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+    app:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/app
+      username: qinnan
+      password: 123456
+      type: com.alibaba.druid.pool.DruidDataSource
+
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  # jpa配置
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update # create 每次都重新创建表，update，表若存在则不重建
+
+# mybatis配置
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.qn.eneity
+
+# 日志配置
+logging:
+  file:
+    path: log
+    max-history: 10
+    max-size: 10MB
+  level:
+    com:
+      qn: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n'
+
+  # 使用三个---进行文档块区分环境
+---
+server:
+  port: 8084
+spring:
+  profiles: dev
+---
+server:
+  port: 7077
+spring:
+  profiles: prod
