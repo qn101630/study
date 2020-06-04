@@ -1,6 +1,9 @@
 package com.qn.eneity;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private static final long serialVersionUID = -7215675992817999142L;
     private Integer id;
 
     private String userName;

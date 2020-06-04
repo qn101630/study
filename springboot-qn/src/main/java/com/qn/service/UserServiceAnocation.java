@@ -17,7 +17,7 @@ public class UserServiceAnocation {
     @Autowired
     UserMapperAnocation userMapperAnocation;
 
-    @Cacheable("user")
+    @Cacheable(value = "user", keyGenerator = "cacheKeyGenerator")
     public List<User> getAllUsers() {
         System.out.println(new Date().toString());
         return userMapperAnocation.getAllUsers();

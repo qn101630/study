@@ -90,6 +90,22 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update # create 每次都重新创建表，update，表若存在则不重建
+  redis:
+    cluster:
+      nodes:
+        - 192.168.43.32:7001
+        - 192.168.43.32:7002
+        - 192.168.43.32:7003
+        - 192.168.43.32:7004
+        - 192.168.43.32:7005
+        - 192.168.43.32:7006
+      max-redirects: 3
+    lettuce:
+      pool:
+        max-idle: 8
+        max-wait: -1
+        max-active: 8
+        min-idle: 0
 
 # mybatis配置
 mybatis:

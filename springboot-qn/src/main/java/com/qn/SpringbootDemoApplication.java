@@ -17,7 +17,6 @@ import java.util.Arrays;
 @MapperScan("com.qn.mapper") //扫描的mapper
 @SpringBootApplication
 @ServletComponentScan
-@EnableCaching
 public class SpringbootDemoApplication {
 
     public static void main(String[] args) {
